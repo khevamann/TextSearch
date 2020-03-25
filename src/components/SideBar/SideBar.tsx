@@ -21,7 +21,7 @@ class SideBar extends React.Component<PropTypes> {
             <div className="SideBar_ColorContainer">
               {wordObjs.map((wordObj: WordObj) => (
                 <WordBubble
-                  key={wordObj.color}
+                  key={wordObj.word}
                   wordObj={wordObj}
                   toggleEnable={() => toggleEnable(wordObj)}
                 />
