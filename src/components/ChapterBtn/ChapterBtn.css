@@ -12,5 +12,9 @@
     font-style: italic;
     color: #444;
     user-select: none;
+}
 
+.Button_Selected {
+    background-color: #A3BCF9;
+    border-color: #A3BCF9;
 }

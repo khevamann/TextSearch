@@ -6,15 +6,16 @@ import { NUM_CHAPTERS } from "../../constants";
 
 interface PropType {
   onWordChange(words: Array<string>): void;
+  onChapterChange(index: number): void;
 }
 
 class Header extends React.Component<PropType> {
   state = {
-    selected: 0,
+    selected: 1,
   };
   handleSelection(index: number) {
-    console.log(`Chapter ${index} selected`);
-    this.setState({selected: index})
+    this.setState({ selected: index });
+    this.props.onChapterChange(index)
   }
   render() {
     const { onWordChange } = this.props;
@@ -23,11 +24,12 @@ class Header extends React.Component<PropType> {
       <div className="Header_Container">
         <SearchBar onWordChange={onWordChange} />
         <div className="Header_Buttons">
-          {Array.from(Array(NUM_CHAPTERS + 1)).map((data, index) => (
+          {Array.from(Array(NUM_CHAPTERS)).map((data, index) => (
             <ChapterBtn
-              value={index}
-              selected={selected === index}
-              onChapSelected={(() => this.handleSelection(index))}
+              key={index}
+              index={index + 1}
+              selected={selected === index + 1}
+              onChapSelected={this.handleSelection.bind(this)}
             />
           ))}
         </div>

@@ -1,12 +1,14 @@
 import React from "react";
-import {getAllTexts} from "../../utils";
 import "./TextView.css";
 
-function TextView() {
+interface PropTypes {
+  text: string;
+}
 
+function TextView({ text }: PropTypes) {
   return (
     <div className="TextView_Container">
-      <p>{getAllTexts()}</p>
+      <p>{text}</p>
     </div>
   );
 }

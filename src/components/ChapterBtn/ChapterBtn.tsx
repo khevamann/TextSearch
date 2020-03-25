@@ -1,22 +1,28 @@
 import React from "react";
 import "./ChapterBtn.css";
 
-interface StateType {
-  searchVal: string;
-  words: Array<string>;
-}
 interface PropType {
-  value: number;
+  index: number;
   selected: boolean;
   onChapSelected(index: number): void;
 }
 
 class ChapterBtn extends React.Component<PropType> {
+  chapSelected() {
+    const { index, onChapSelected, selected } = this.props;
+    if (!selected) {
+      onChapSelected(index);
+    }
+  }
+
   render() {
-    const { value, onChapSelected } = this.props;
+    const { index, selected } = this.props;
     return (
-      <div classNames={[(value === 0)? "Button": ""]} onClick={() => onChapSelected}>
-        {value === 0 ? `All Chapters` : `Chapter ${value}`}
+      <div
+        className={`Button ${selected ? "Button_Selected" : ""}`}
+        onClick={this.chapSelected.bind(this)}
+      >
+        Chapter {index}
       </div>
     );
   }
