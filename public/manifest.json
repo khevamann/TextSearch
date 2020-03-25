@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Text Search",
+  "name": "Advanced Text Search",
   "icons": [
     {
       "src": "favicon.ico",

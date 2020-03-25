@@ -1,0 +1,21 @@
+.Header_Container {
+  background-color: #f7f7f7;
+  height: 75px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 1px 2px rgba(0,0,0,0.23);
+  z-index: 5;
+  padding: 5px;
+  margin: 0;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Header_Buttons {
+  margin-left: 20px;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  overflow-x: scroll;
+  max-width: 70%;
+}

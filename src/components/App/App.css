@@ -1,0 +1,15 @@
+.App_Container {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.App_Content {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+}

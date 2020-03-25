@@ -1,0 +1,15 @@
+.TextView_Container {
+  padding: 10px;
+  background-color: #e4e4e4;
+  font-family: Arial, sans-serif;
+  flex: 1 1 auto;
+  height: calc(100vh - 75px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  .TextView_Container {
+    display: none;
+  }
+}

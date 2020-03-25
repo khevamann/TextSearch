@@ -1,0 +1,23 @@
+.SideBar_Container {
+  background-color: #f7f7f7;
+  width: 30%;
+  min-width: 300px;
+}
+.SideBar_ToggleWordMsg {
+  margin-left: 10px;
+  color: #555;
+  font-weight: 500;
+  font-size: 14px;
+}
+.SideBar_ColorContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .SideBar_Container {
+    flex: 1;
+  }
+}

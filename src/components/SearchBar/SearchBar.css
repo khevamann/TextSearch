@@ -1,0 +1,26 @@
+.SearchBar {
+  width: 30vw;
+  height: 35px;
+  border-radius: 100px;
+  border: 2px solid #ddd;
+  padding: 3px 10px 3px 10px;
+  min-width: 300px;
+  font-size: 16px;
+  flex: 1 0 auto;
+  -webkit-transition: width 200ms ease-in-out;
+  -moz-transition: width 200ms ease-in-out;
+  -o-transition: width 200ms ease-in-out;
+  transition: width 200ms ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid #5386E4;
+
+  -webkit-transition: width 200ms ease-in-out;
+  -moz-transition: width 200ms ease-in-out;
+  -o-transition: width 200ms ease-in-out;
+  transition: width 200ms ease-in-out;
+
+  width: 50vw;
+}
