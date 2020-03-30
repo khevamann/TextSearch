@@ -13,6 +13,7 @@ import {
   calculateScore,
   getChapterSentences,
   getChapterText,
+  isValidReplacement,
 } from "../../utils";
 
 interface StateTypes {
@@ -66,16 +67,17 @@ class App extends React.Component {
         // Loop through words in each sentence
         let valueArr = value.split(" ").map((word: string) => {
           let wordComp = word.toLowerCase().replace(/[^\w\s]/g, "");
-          if (wordObjs[wordComp] && wordObjs[wordComp].enabled) {
+          let replacement = isValidReplacement(wordObjs, wordComp);
+          if (replacement !== "") {
             //Handle sentence scoring
-            if (!uniqueWords[wordComp]) {
+            if (!uniqueWords[replacement]) {
               currScore.uniqueCount++;
-              uniqueWords[wordComp] = true;
+              uniqueWords[replacement] = true;
             }
             currScore.count++;
 
             // Return a formatted string to make it easier to spot words in TextView
-            return `<strong style="color: white; background-color: ${wordObjs[wordComp].color}">${word}</strong>`;
+            return `<strong style="color: white; background-color: ${wordObjs[replacement].color}">${word}</strong>`;
           }
           return word;
         });

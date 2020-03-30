@@ -14,7 +14,7 @@ import { text as text13 } from "./assets/texts/13";
 import { text as text14 } from "./assets/texts/14";
 import { text as text15 } from "./assets/texts/15";
 import { text as text16 } from "./assets/texts/16";
-import { Sentence, SentenceScore } from "./constants";
+import { Sentence, SentenceScore, WordObj } from "./constants";
 const allTexts = [
   text1.split("."),
   text2.split("."),
@@ -56,6 +56,23 @@ export function calculateScore(scoreObj: SentenceScore): number {
     scoreObj.count * 10 + scoreObj.uniqueCount * 50 - scoreObj.length / 10,
     0
   );
+}
+
+export function isValidReplacement(wordObjs: any, wordComp: string): string {
+  if (wordObjs[wordComp]) {
+    if (!wordObjs[wordComp].enabled) return "";
+    return wordComp;
+  }
+  for (let key of Object.keys(wordObjs)) {
+    let endings = ["s", "ed", "d", "es"];
+    for (let ending of endings) {
+      if (key === wordComp + ending || key + ending === wordComp) {
+        if (!wordObjs[key].enabled) return "";
+        return key;
+      }
+    }
+  }
+  return "";
 }
 
 export function shadeColor(inputColor: string, lightenPercent: number) {
