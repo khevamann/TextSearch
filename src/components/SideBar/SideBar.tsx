@@ -52,8 +52,9 @@ class SideBar extends React.Component<PropTypes> {
                   scrollTo(sentence.index);
                 }}
               >
-                <p>{sentence.index}: {ReactHtmlParser(sentence.text)}</p>
+                <p>{sentence.score}: {ReactHtmlParser(sentence.text)}</p>
                 <img
+                    alt=""
                   className="RightArrow"
                   src={require("../../assets/right.png")}
                 />

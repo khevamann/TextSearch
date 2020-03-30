@@ -14,7 +14,7 @@ import { text as text13 } from "./assets/texts/13";
 import { text as text14 } from "./assets/texts/14";
 import { text as text15 } from "./assets/texts/15";
 import { text as text16 } from "./assets/texts/16";
-import {Sentence} from "./constants";
+import { Sentence, SentenceScore } from "./constants";
 const allTexts = [
   text1.split("."),
   text2.split("."),
@@ -44,13 +44,20 @@ export function getChapterSentences(chapter: number): Array<Sentence> {
   return allTexts[chapter - 1].map((text, index) => ({
     score: 0,
     text: text,
-    index
+    index,
   }));
 }
 
-export function getAllChapters() {
-  return allTexts.join("\n");
+export function calculateScore(scoreObj: SentenceScore): number {
+  if (scoreObj.length < 30) {
+    return -1;
+  }
+  return Math.max(
+    scoreObj.count * 10 + scoreObj.uniqueCount * 50 - scoreObj.length / 10,
+    0
+  );
 }
+
 export function shadeColor(inputColor: string, lightenPercent: number) {
   let R = parseInt(inputColor.substring(1, 3), 16);
   let G = parseInt(inputColor.substring(3, 5), 16);

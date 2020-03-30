@@ -9,7 +9,11 @@ import {
   Sentence,
   SentenceScore,
 } from "../../constants";
-import { getChapterSentences, getChapterText } from "../../utils";
+import {
+  calculateScore,
+  getChapterSentences,
+  getChapterText,
+} from "../../utils";
 
 interface StateTypes {
   wordObjs: any;
@@ -55,7 +59,6 @@ class App extends React.Component {
         let currScore: SentenceScore = {
           count: 0,
           uniqueCount: 0,
-          uniqueLength: 0,
           length: value.length,
         };
         let uniqueWords: any = {};
@@ -67,7 +70,6 @@ class App extends React.Component {
             //Handle sentence scoring
             if (!uniqueWords[wordComp]) {
               currScore.uniqueCount++;
-              currScore.uniqueLength += wordComp.length;
               uniqueWords[wordComp] = true;
             }
             currScore.count++;
@@ -78,8 +80,9 @@ class App extends React.Component {
           return word;
         });
 
-        //FIXME tally score
-        let score = currScore.count;
+        //Current scoring function
+        let score = calculateScore(currScore);
+
         return {
           text: valueArr.join(" "),
           index: sentIndex,
@@ -88,8 +91,6 @@ class App extends React.Component {
       }
     );
     this.setState({ sentences: sentCount });
-
-    this.getTopSentences(NUM_SENTENCES);
   }
 
   getTopSentences(numSent: number) {
@@ -165,7 +166,7 @@ class App extends React.Component {
         <div className="App_Content">
           <SideBar
             wordObjs={wordObjs}
-            topSentences={this.getTopSentences(5)}
+            topSentences={this.getTopSentences(NUM_SENTENCES)}
             toggleEnable={this.toggleEnable.bind(this)}
             scrollTo={this.scrollTo.bind(this)}
           />

@@ -39,6 +39,5 @@ export interface Sentence {
 export interface SentenceScore {
     count: number;
     uniqueCount: number;
-    uniqueLength: number;
     length: number;
 }
