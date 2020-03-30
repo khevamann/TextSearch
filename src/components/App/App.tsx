@@ -11,8 +11,10 @@ import {
 } from "../../constants";
 import {
   calculateScore,
+  findAllChapMatches,
   getChapterSentences,
   getChapterText,
+  indexOfMax,
   isValidReplacement,
 } from "../../utils";
 
@@ -21,14 +23,18 @@ interface StateTypes {
   chapter: number;
   sentences: Array<Sentence>;
   currSentence: number;
+  bestChap: number;
+  chapMatches: Array<number>;
 }
 
 class App extends React.Component {
   state: StateTypes = {
     sentences: [],
     wordObjs: {},
-    chapter: 1,
+    chapter: 0,
     currSentence: -1,
+    bestChap: 1,
+    chapMatches: [],
   };
   componentDidMount(): void {
     this.setState({ sentences: getChapterSentences(1) });
@@ -53,7 +59,14 @@ class App extends React.Component {
 
   runSearch(chapterNum?: number) {
     let { wordObjs, chapter } = this.state;
-    chapter = chapterNum || chapter;
+    chapter =
+      chapterNum !== undefined && chapterNum >= 0 ? chapterNum : chapter;
+
+    let chapMatches = findAllChapMatches(wordObjs);
+    let bestChap = indexOfMax(chapMatches) + 1;
+    if (chapter === 0) {
+      chapter = bestChap;
+    }
 
     let sentCount: Array<Sentence> = getChapterText(chapter).map(
       (value: string, sentIndex: number) => {
@@ -92,7 +105,8 @@ class App extends React.Component {
         };
       }
     );
-    this.setState({ sentences: sentCount });
+
+    this.setState({ sentences: sentCount, chapMatches, bestChap });
   }
 
   getTopSentences(numSent: number) {
@@ -101,7 +115,8 @@ class App extends React.Component {
 
     return newSents
       .sort((sent1: Sentence, sent2: Sentence) => sent2.score - sent1.score)
-      .slice(0, numSent).filter((sent) => sent.score > 0);
+      .slice(0, numSent)
+      .filter((sent) => sent.score > 0);
   }
 
   scrollTo(sentNumber: number) {
@@ -157,11 +172,14 @@ class App extends React.Component {
 
     this.runSearch();
   }
+
   render() {
-    const { wordObjs, sentences } = this.state;
+    const { wordObjs, sentences, bestChap, chapMatches, chapter } = this.state;
     return (
       <div className="App_Container">
         <Header
+          bestChap={bestChap}
+          chapMatches={chapMatches}
           onWordChange={this.updateWords.bind(this)}
           onChapterChange={this.onChapterChange.bind(this)}
         />
@@ -172,7 +190,11 @@ class App extends React.Component {
             toggleEnable={this.toggleEnable.bind(this)}
             scrollTo={this.scrollTo.bind(this)}
           />
-          <TextView sentences={sentences} />
+          <TextView
+            sentences={sentences}
+            chapter={chapter}
+            bestChapter={bestChap}
+          />
         </div>
       </div>
     );

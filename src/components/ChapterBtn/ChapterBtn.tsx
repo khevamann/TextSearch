@@ -4,6 +4,8 @@ import "./ChapterBtn.css";
 interface PropType {
   index: number;
   selected: boolean;
+  matchNumber?: number;
+  chapterNum?: number;
   onChapSelected(index: number): void;
 }
 
@@ -16,14 +18,31 @@ class ChapterBtn extends React.Component<PropType> {
   }
 
   render() {
-    const { index, selected } = this.props;
+    const { index, selected, matchNumber, chapterNum } = this.props;
     return (
-      <div
-        className={`Button ${selected ? "Button_Selected" : ""}`}
-        onClick={this.chapSelected.bind(this)}
-      >
-        Chapter {index}
-      </div>
+      <>
+        {index === 0 ? (
+          <div
+            className={`Button Button_Best ${selected ? "Button_Selected" : ""}`}
+            onClick={this.chapSelected.bind(this)}
+          >
+            Best Chapter
+            {chapterNum && chapterNum >= 0 && (
+              <p className="Button_Matches">Chapter {chapterNum}</p>
+            )}
+          </div>
+        ) : (
+          <div
+            className={`Button ${selected ? "Button_Selected" : ""}`}
+            onClick={this.chapSelected.bind(this)}
+          >
+            Chapter {index}
+            {matchNumber !== undefined && (
+              <p className="Button_Matches">{matchNumber} matches</p>
+            )}
+          </div>
+        )}
+      </>
     );
   }
 }

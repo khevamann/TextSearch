@@ -16,32 +16,32 @@ import { text as text15 } from "./assets/texts/15";
 import { text as text16 } from "./assets/texts/16";
 import { Sentence, SentenceScore } from "./constants";
 const allTexts = [
-  text1.split("."),
-  text2.split("."),
-  text3.split("."),
-  text4.split("."),
-  text5.split("."),
-  text6.split("."),
-  text7.split("."),
-  text8.split("."),
-  text9.split("."),
-  text10.split("."),
-  text11.split("."),
-  text12.split("."),
-  text13.split("."),
-  text14.split("."),
-  text15.split("."),
-  text16.split("."),
+  text1,
+  text2,
+  text3,
+  text4,
+  text5,
+  text6,
+  text7,
+  text8,
+  text9,
+  text10,
+  text11,
+  text12,
+  text13,
+  text14,
+  text15,
+  text16,
 ];
 
 export function getChapterText(chapter: number): Array<string> {
   if (chapter > 16 || chapter < 1) return [];
-  return allTexts[chapter - 1];
+  return allTexts[chapter - 1].split(".");
 }
 
 export function getChapterSentences(chapter: number): Array<Sentence> {
   if (chapter > 16 || chapter < 1) return [];
-  return allTexts[chapter - 1].map((text, index) => ({
+  return getChapterText(chapter).map((text, index) => ({
     score: 0,
     text: text,
     index,
@@ -56,6 +56,16 @@ export function calculateScore(scoreObj: SentenceScore): number {
     scoreObj.count * 10 + scoreObj.uniqueCount * 50 - scoreObj.length / 10,
     0
   );
+}
+
+export function findAllChapMatches(wordObjs: any): Array<number> {
+  let chapMatches = new Array(16).fill(0);
+  allTexts.forEach((chap, index) => {
+    chap.split(" ").forEach((word) => {
+      if (wordObjs[word]) chapMatches[index]++;
+    });
+  });
+  return chapMatches;
 }
 
 export function isValidReplacement(wordObjs: any, wordComp: string): string {
@@ -73,4 +83,18 @@ export function isValidReplacement(wordObjs: any, wordComp: string): string {
     }
   }
   return "";
+}
+
+export function indexOfMax(arr: Array<number>): number {
+  let max = arr[0];
+  let maxIndex = 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      maxIndex = i;
+      max = arr[i];
+    }
+  }
+
+  return maxIndex;
 }
