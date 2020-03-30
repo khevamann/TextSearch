@@ -59,6 +59,14 @@ class App extends React.Component {
 
   runSearch(chapterNum?: number) {
     let { wordObjs, chapter } = this.state;
+
+    if (Object.keys(wordObjs).length === 0) {
+      if (chapterNum !== undefined && chapterNum !== chapter) {
+        this.setState({ sentences: getChapterSentences(chapterNum) });
+      }
+      return;
+    }
+
     chapter =
       chapterNum !== undefined && chapterNum >= 0 ? chapterNum : chapter;
 
