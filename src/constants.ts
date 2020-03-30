@@ -1,5 +1,6 @@
 export const MIN_WORD_LENGTH = 3;
 export const NUM_CHAPTERS = 16;
+export const NUM_SENTENCES = 10;
 
 export const colors = [
     "#45777c",
@@ -28,4 +29,16 @@ export interface WordObj {
     color: string;
     word: string;
     enabled: boolean;
+}
+export interface Sentence {
+    index: number;
+    score: number;
+    text: string;
+}
+
+export interface SentenceScore {
+    count: number;
+    uniqueCount: number;
+    uniqueLength: number;
+    length: number;
 }

@@ -8,6 +8,10 @@
   overflow-x: hidden;
 }
 
+.TextView_Container p {
+  margin: 0;
+}
+
 @media only screen and (max-width: 600px) {
   .TextView_Container {
     display: none;

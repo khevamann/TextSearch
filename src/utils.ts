@@ -14,28 +14,38 @@ import { text as text13 } from "./assets/texts/13";
 import { text as text14 } from "./assets/texts/14";
 import { text as text15 } from "./assets/texts/15";
 import { text as text16 } from "./assets/texts/16";
+import {Sentence} from "./constants";
 const allTexts = [
-  text1,
-  text2,
-  text3,
-  text4,
-  text5,
-  text6,
-  text7,
-  text8,
-  text9,
-  text10,
-  text11,
-  text12,
-  text13,
-  text14,
-  text15,
-  text16,
+  text1.split("."),
+  text2.split("."),
+  text3.split("."),
+  text4.split("."),
+  text5.split("."),
+  text6.split("."),
+  text7.split("."),
+  text8.split("."),
+  text9.split("."),
+  text10.split("."),
+  text11.split("."),
+  text12.split("."),
+  text13.split("."),
+  text14.split("."),
+  text15.split("."),
+  text16.split("."),
 ];
 
-export function getChapterText(chapter: number) {
-  if (chapter > 16 || chapter < 1) return "";
+export function getChapterText(chapter: number): Array<string> {
+  if (chapter > 16 || chapter < 1) return [];
   return allTexts[chapter - 1];
+}
+
+export function getChapterSentences(chapter: number): Array<Sentence> {
+  if (chapter > 16 || chapter < 1) return [];
+  return allTexts[chapter - 1].map((text, index) => ({
+    score: 0,
+    text: text,
+    index
+  }));
 }
 
 export function getAllChapters() {
