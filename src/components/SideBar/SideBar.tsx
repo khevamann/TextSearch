@@ -39,6 +39,12 @@ class SideBar extends React.Component<PropTypes> {
                 />
               ))}
             </div>
+            {topSentences.length === 0 && (
+              <div className="NoResults">
+                <img className="NoResults_Image" src={require("../../assets/sad.png")} alt=""/>
+                <p>There are no results for this search.</p>
+              </div>
+            )}
             {topSentences.map((sentence: Sentence) => (
               <div
                 className={
@@ -54,7 +60,7 @@ class SideBar extends React.Component<PropTypes> {
               >
                 <p>{ReactHtmlParser(sentence.text)}</p>
                 <img
-                    alt=""
+                  alt=""
                   className="RightArrow"
                   src={require("../../assets/right.png")}
                 />

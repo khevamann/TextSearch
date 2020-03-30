@@ -1,4 +1,4 @@
-export const MIN_WORD_LENGTH = 3;
+export const MIN_WORD_LENGTH = 4;
 export const NUM_CHAPTERS = 16;
 export const NUM_SENTENCES = 10;
 

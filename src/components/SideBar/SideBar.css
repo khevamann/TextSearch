@@ -41,6 +41,16 @@
   align-self: center;
 }
 
+.NoResults {
+  margin: 50% 0;
+  color: #444444;
+  text-align: center;
+}
+
+.NoResults_Image{
+  width: 100px;
+}
+
 @media only screen and (max-width: 600px) {
   .SideBar_Container {
     flex: 1;

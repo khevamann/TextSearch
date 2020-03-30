@@ -100,8 +100,8 @@ class App extends React.Component {
     const newSents = [...sentences];
 
     return newSents
-      .sort((a: Sentence, b: Sentence) => b.score - a.score)
-      .slice(0, numSent);
+      .sort((sent1: Sentence, sent2: Sentence) => sent2.score - sent1.score)
+      .slice(0, numSent).filter((sent) => sent.score > 0);
   }
 
   scrollTo(sentNumber: number) {
