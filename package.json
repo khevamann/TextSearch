@@ -1,5 +1,6 @@
 {
   "name": "text-search",
+  "homepage": "https://khevamann.com/text-search",
   "version": "1.0.0",
   "private": false,
   "dependencies": {
