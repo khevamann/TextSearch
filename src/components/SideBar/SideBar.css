@@ -44,6 +44,8 @@
 .NoResults {
   margin: 50% 0;
   color: #444444;
+  font-size: 20px;
+  font-weight: bold;
   text-align: center;
 }
 

@@ -24,9 +24,10 @@ class SideBar extends React.Component<PropTypes> {
     const { wordObjs, toggleEnable, scrollTo, topSentences } = this.props;
     const { selected } = this.state;
     return (
-      <>
-        {Object.keys(wordObjs).length > 0 && (
-          <div className="SideBar_Container">
+      <div className="SideBar_Container">
+        {Object.keys(wordObjs).length > 0 ? (
+          <>
+            {" "}
             <p className="SideBar_ToggleWordMsg">
               Select words to remove from search:
             </p>
@@ -41,8 +42,12 @@ class SideBar extends React.Component<PropTypes> {
             </div>
             {topSentences.length === 0 && (
               <div className="NoResults">
-                <img className="NoResults_Image" src={require("../../assets/sad.png")} alt=""/>
-                <p>There are no results for this search.</p>
+                <img
+                  className="NoResults_Image"
+                  src={require("../../assets/sad.png")}
+                  alt=""
+                />
+                <p>No Results</p>
               </div>
             )}
             {topSentences.map((sentence: Sentence) => (
@@ -66,9 +71,18 @@ class SideBar extends React.Component<PropTypes> {
                 />
               </div>
             ))}
+          </>
+        ) : (
+          <div className="NoResults">
+            <img
+              className="NoResults_Image"
+              src={require("../../assets/search.png")}
+              alt=""
+            />
+            <p>Start Searching...</p>
           </div>
         )}
-      </>
+      </div>
     );
   }
 }
