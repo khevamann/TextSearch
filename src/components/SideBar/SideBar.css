@@ -1,7 +1,6 @@
 .SideBar_Container {
   background-color: #f7f7f7;
   width: 30%;
-  /*min-width: 300px;*/
   flex: 1 0 auto;
   height: calc(100vh - 75px);
   overflow-y: scroll;
