@@ -2,7 +2,7 @@
    <img alt="PasswordManager Logo" title="Text Search Logo" src="./public/logo192.png" target="_blank" width="200">
 </p>
 <p align="center">
-  <a href="https://khevamann.com/TextSearch" target='_blank'>Live App</a>
+  <a href="https://khevamann.com/text-search" target='_blank'>Live App</a>
 </p>
 
 # Text Search
